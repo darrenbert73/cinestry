@@ -7,17 +7,20 @@ import { MovieList } from './components/MovieList';
 import { MovieDetails } from './components/MovieDetails';
 import { ThemeToggle } from './components/ThemeToggle';
 import { LoadingSpinner } from './components/Spinner';
-import { searchMovies, getMovieDetails } from './api/omdb';
+import { searchMovies, getMovieDetails } from './api/movieService';
 import { Movie, MovieDetails as MovieDetailsType } from './types/movie';
 import { ReactComponent as MovieIcon } from './assets/svg/movie-icon.svg';
 
 const Shell = styled.div`
   max-width: 1500px;
   width: 100%;
+  height: 100vh;
   margin: 0 auto;
   padding: 16px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 12px;
@@ -28,6 +31,14 @@ const Shell = styled.div`
     padding: 8px;
     gap: 8px;
   }
+`;
+
+const HeaderPanels = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--background);
+  padding-bottom: 8px;
 `;
 
 const TopBar = styled.div`
@@ -48,7 +59,6 @@ const TopBar = styled.div`
 const Brand = styled.div`
   display: flex;
   gap: 8px;
-  // align-items: center;
   flex-shrink: 1;
 
   @media (max-width: 1024px) {
@@ -118,6 +128,8 @@ const SearchHeader = styled.h2`
 `;
 
 const MovieGrid = styled.div`
+  flex: 1;
+  overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
@@ -130,7 +142,6 @@ const MovieGrid = styled.div`
     gap: 8px;
   }
 `;
-
 function App() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Movie[]>([]);
@@ -192,11 +203,15 @@ function App() {
     <ThemeProvider>
       <GlobalStyles />
       <Shell>
-        {header}
-        <SearchHeader>Let’s Find a Movie for You</SearchHeader>
-        <SearchBar onSearch={performSearch} />
+        <HeaderPanels>
+          {header}
+          <SearchHeader>Let’s Find a Movie for You</SearchHeader>
+          <SearchBar onSearch={performSearch} />
+        </HeaderPanels>
+
         {loading && <LoadingSpinner message="Searching for movies..." />}
         {error && <div role="alert">{error}</div>}
+
         <MovieGrid>
           <MovieList
             movies={results}

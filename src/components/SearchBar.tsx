@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 0 16px; /* prevent touching screen edges on mobile */
+  padding: 0 16px;
 `;
 
 const Form = styled.form`
@@ -14,15 +14,15 @@ const Form = styled.form`
   grid-template-columns: 1fr auto;
   gap: 12px;
   width: 100%;
-  max-width: 600px; /* desktop max */
+  max-width: 600px;
 
   @media (max-width: 1024px) {
-    max-width: 500px; /* tablet */
+    max-width: 500px;
   }
 
   @media (max-width: 480px) {
-    max-width: 100%; /* mobile full width */
-    grid-template-columns: 1fr auto; /* keep input + button */
+    max-width: 100%;
+    grid-template-columns: 1fr auto;
     gap: 8px;
   }
 `;
@@ -44,7 +44,7 @@ const Input = styled.input`
   }
 
   @media (max-width: 480px) {
-    padding: 10px 12px 10px 36px; /* slightly smaller on mobile */
+    padding: 10px 12px 10px 36px;
     font-size: 14px;
   }
 `;

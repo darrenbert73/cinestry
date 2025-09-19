@@ -14,6 +14,11 @@ const saveCache = () => {
   localStorage.setItem('detailsCache', JSON.stringify(Array.from(detailsCache.entries())));
 };
 
+/**
+ * This is a search function to get a list of movies from an external API and cache it
+ * @param query string value
+ * @returns List of movies that match the string
+ */
 export const searchMovies = async (query: string): Promise<Movie[]> => {
   const cached = cache.get(query);
   if (cached) {
@@ -30,17 +35,22 @@ export const searchMovies = async (query: string): Promise<Movie[]> => {
   return results;
 };
 
+/**
+ * Gets the movie details by passing the movie id passed from the list
+ * @param id id for the movie
+ * @returns a json object of movie details
+ */
 export const getMovieDetails = async (id: string): Promise<MovieDetails | null> => {
   const cached = detailsCache.get(id);
   if (cached) {
-    return cached; // safely return cached object
+    return cached;
   }
 
   const { data } = await axios.get(BASE_URL, {
     params: { i: id, apikey: API_KEY, plot: 'full' },
   });
 
-  if (!data) return null; // handle unexpected response
+  if (!data) return null;
 
   detailsCache.set(id, data);
   saveCache();

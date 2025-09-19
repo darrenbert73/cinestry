@@ -1,4 +1,4 @@
-# Cinestry 🎬
+# Cinestry - Movie Explorer 🎬
 
 Cinestry is a React-based web app that allows users to search for movies, view details, and explore ratings using the OMDb API. The app features a responsive UI, dynamic theming (light/dark), and provides an intuitive interface for discovering movie information.
 

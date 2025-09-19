@@ -52,7 +52,6 @@ describe('SearchBar with mocked API', () => {
 
     const handleSearch = async (query: string) => {
       const results = await mockApi(query);
-      // Normally you'd set these results in parent state
       results.forEach((m: { Title: any }) => console.log('Movie:', m.Title));
     };
 
