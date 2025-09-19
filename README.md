@@ -116,7 +116,7 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
       - Once stale, React Query automatically refetches in the background to keep data up to date.
 
 2.  Limitations:
-    - Cache can grow indefinitely, no TTL (time-to-live) strategy, and data may become stale until the user manually refreshes.
+    -Without extra setup (like persistQueryClient), the cache only lives in memory. Refreshing the page or closing the browser clears the cache.
     - API key quota limits (1000/day), occasional inconsistent data ("N/A" values), and lack of advanced filtering.
     - No lazy loading for images (posters), no pagination/infinite scroll for large result sets.
     - No Pagination: The API’s search results only return up to 10 results per page.
