@@ -12,7 +12,7 @@ import { Movie, MovieDetails as MovieDetailsType } from './types/movie';
 import { ReactComponent as MovieIcon } from './assets/svg/movie-icon.svg';
 
 const Shell = styled.div`
-  max-width: 1100px;
+  max-width: 1500px;
   width: 100%;
   margin: 0 auto;
   padding: 16px;
@@ -41,6 +41,14 @@ const Logo = styled(MovieIcon)`
   width: 28px;
   height: 28px;
   color: var(--accent);
+`;
+
+const SearchHeader = styled.h2`
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+  color: var(--text); // matches your theme
 `;
 
 function App() {
@@ -105,6 +113,7 @@ function App() {
       <GlobalStyles />
       <Shell>
         {header}
+        <SearchHeader>Let’s Find a Movie for You</SearchHeader>
         <SearchBar onSearch={performSearch} />
         {loading && <LoadingSpinner message="Searching for movies..." />}
         {error && <div role="alert">{error}</div>}

@@ -1,33 +1,48 @@
 import axios from 'axios';
 import { Movie, MovieDetails } from '../types/movie';
-//import { clearConfigCache } from 'prettier';
 
 const API_KEY = process.env.REACT_APP_OMDB_KEY || '';
 const BASE_URL = 'https://www.omdbapi.com/';
 
-const cache = new Map<string, Movie[]>();
-const detailsCache = new Map<string, MovieDetails>();
+const cache: Map<string, Movie[]> = new Map(JSON.parse(localStorage.getItem('movieCache') || '[]'));
+const detailsCache: Map<string, MovieDetails> = new Map(
+  JSON.parse(localStorage.getItem('detailsCache') || '[]'),
+);
+
+const saveCache = () => {
+  localStorage.setItem('movieCache', JSON.stringify(Array.from(cache.entries())));
+  localStorage.setItem('detailsCache', JSON.stringify(Array.from(detailsCache.entries())));
+};
 
 export const searchMovies = async (query: string): Promise<Movie[]> => {
-  if (cache.has(query)) return cache.get(query)!;
+  const cached = cache.get(query);
+  if (cached) {
+    return cached;
+  }
+
   const { data } = await axios.get(BASE_URL, {
     params: { s: query, apikey: API_KEY },
   });
 
   const results: Movie[] = data.Search || [];
   cache.set(query, results);
+  saveCache();
   return results;
 };
 
-export const getMovieDetails = async (id: string): Promise<MovieDetails> => {
-  if (detailsCache.has(id)) {
-    return detailsCache.get(id)!;
+export const getMovieDetails = async (id: string): Promise<MovieDetails | null> => {
+  const cached = detailsCache.get(id);
+  if (cached) {
+    return cached; // safely return cached object
   }
 
   const { data } = await axios.get(BASE_URL, {
     params: { i: id, apikey: API_KEY, plot: 'full' },
   });
 
+  if (!data) return null; // handle unexpected response
+
   detailsCache.set(id, data);
+  saveCache();
   return data;
 };

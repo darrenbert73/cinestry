@@ -1,6 +1,6 @@
 # Cinestry 🎬
 
-A React-based Movie Explorer that lets you search for movies, view detailed information, and check IMDb ratings in a clean and responsive interface.
+Cinestry is a React-based web app that allows users to search for movies, view details, and explore ratings using the OMDb API. The app features a responsive UI, dynamic theming (light/dark), and provides an intuitive interface for discovering movie information.
 
 ---
 
@@ -12,7 +12,7 @@ A React-based Movie Explorer that lets you search for movies, view detailed info
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Testing](#testing)
-- [Contributing](#contributing)
+- [Design Notes](#designnotes)
 - [License](#license)
 
 ---
@@ -50,6 +50,7 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
    ```bash
    npm start
    ```
+5. Open http://localhost:3000 to view it.
 
 ## Usage
 
@@ -73,7 +74,23 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
 ## Testing
 
-1. Run tests with:
+1. Unit test suites have been created for two components under a seperate folder
+   i. Search Bar component
+   ii. Movie details overlay component.
+2. Run tests with:
    ```bash
    npm test
    ```
+
+## Design Notes
+
+1. Architecture:
+   i. React functional components with hooks for state management.
+
+   ii. Context API for theme management.
+
+   iii. Styled-components for modular and theme-aware styling.
+
+   iv. Axios for API requests.
+
+   v. Jest – for running unit tests and mocking modules.
