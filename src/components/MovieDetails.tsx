@@ -21,6 +21,19 @@ const Panel = styled.div`
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  @media (max-width: 768px) {
+    width: 95vw;
+    max-height: 95vh;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    max-height: 100vh;
+  }
 `;
 
 const Header = styled.header`
@@ -49,6 +62,10 @@ const Content = styled.div`
   gap: 10px;
   padding: 16px;
   line-height: 1.6;
+
+  @media (max-width: 480px) {
+    padding: 12px;
+  }
 `;
 
 const Meta = styled.div`

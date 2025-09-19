@@ -30,8 +30,16 @@ const Card = styled.article`
 const Poster = styled.img`
   width: 100%;
   height: 340px;
-  object-fit: fill;
+  object-fit: cover;
   background: var(--card);
+
+  @media (max-width: 768px) {
+    height: 280px;
+  }
+
+  @media (max-width: 480px) {
+    height: 220px;
+  }
 `;
 
 const Info = styled.div`
@@ -41,6 +49,11 @@ const Info = styled.div`
 const Title = styled.h3`
   margin: 0 0 4px 0;
   font-size: 13px;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -53,6 +66,10 @@ const Title = styled.h3`
 const Year = styled.div`
   color: var(--muted);
   font-size: 13px;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
   margin-top: 4px;
 `;
 

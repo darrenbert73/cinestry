@@ -18,29 +18,87 @@ const Shell = styled.div`
   padding: 16px;
   display: grid;
   gap: 16px;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 8px;
+    gap: 8px;
+  }
 `;
 
 const TopBar = styled.div`
   display: flex;
+  flex-direction: row;
   gap: 10px;
   align-items: center;
   justify-content: space-between;
-`;
+  flex-wrap: wrap;
 
-const Title = styled.h1`
-  margin: 0;
-  font-size: 22px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
 `;
 
 const Brand = styled.div`
   display: flex;
   gap: 8px;
+  // align-items: center;
+  flex-shrink: 1;
+
+  @media (max-width: 1024px) {
+    gap: 6px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 4px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 2px;
+    flex-direction: column; /* stack logo above title on small phones */
+    align-items: center;
+  }
 `;
 
 const Logo = styled(MovieIcon)`
   width: 28px;
   height: 28px;
   color: var(--accent);
+
+  @media (max-width: 768px) {
+    width: 26px;
+    height: 26px;
+  }
+
+  @media (max-width: 480px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  font-size: 22px;
+  text-align: left;
+
+  @media (max-width: 1024px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    // text-align: center;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const SearchHeader = styled.h2`
@@ -48,7 +106,29 @@ const SearchHeader = styled.h2`
   font-weight: 600;
   text-align: center;
   margin-bottom: 16px;
-  color: var(--text); // matches your theme
+  color: var(--text);
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
+`;
+
+const MovieGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 8px;
+  }
 `;
 
 function App() {
@@ -117,12 +197,14 @@ function App() {
         <SearchBar onSearch={performSearch} />
         {loading && <LoadingSpinner message="Searching for movies..." />}
         {error && <div role="alert">{error}</div>}
-        <MovieList
-          movies={results}
-          onSelect={setSelectedId}
-          hasSearched={query.length > 0}
-          loading={loading}
-        />
+        <MovieGrid>
+          <MovieList
+            movies={results}
+            onSelect={setSelectedId}
+            hasSearched={query.length > 0}
+            loading={loading}
+          />
+        </MovieGrid>
       </Shell>
       <MovieDetails details={details} onClose={onCloseDetails} loading={detailsLoading} />
     </ThemeProvider>
