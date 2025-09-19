@@ -108,7 +108,12 @@ function App() {
         <SearchBar onSearch={performSearch} />
         {loading && <LoadingSpinner />}
         {error && <div role="alert">{error}</div>}
-        <MovieList movies={results} onSelect={setSelectedId} hasSearched={query.length > 0} />
+        <MovieList
+          movies={results}
+          onSelect={setSelectedId}
+          hasSearched={query.length > 0}
+          loading={loading}
+        />
       </Shell>
       <MovieDetails details={details} onClose={onCloseDetails} loading={detailsLoading} />
     </ThemeProvider>

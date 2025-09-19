@@ -31,19 +31,29 @@ const SpinnerSmall = styled.div`
   animation: ${spin} 1s linear infinite;
 `;
 
+const SpinnerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  textalign: 'center';
+`;
+
 interface Props {
   size?: 'small' | 'large';
+  message?: string;
 }
 
-export const LoadingSpinner: React.FC<Props> = ({ size = 'large' }) => {
+export const LoadingSpinner: React.FC<Props> = ({ size = 'large', message = `Loading...` }) => {
   const SpinnerComponent = size === 'small' ? SpinnerSmall : Spinner;
 
   return (
     <SpinnerContainer>
-      <div style={{ textAlign: 'center' }}>
+      <SpinnerDiv>
         <SpinnerComponent />
-        {/* {message && <div style={{ marginTop: '12px', color: 'var(--muted)' }}>{message}</div>} */}
-      </div>
+        {message && <div style={{ marginTop: '12px', color: 'var(--muted)' }}>{message}</div>}
+      </SpinnerDiv>
     </SpinnerContainer>
   );
 };

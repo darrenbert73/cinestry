@@ -21,12 +21,18 @@ interface Props {
   movies: Movie[];
   onSelect: (id: string) => void;
   hasSearched?: boolean;
+  loading?: boolean;
 }
 
-export const MovieList: React.FC<Props> = ({ movies, onSelect, hasSearched = false }) => {
+export const MovieList: React.FC<Props> = ({
+  movies,
+  onSelect,
+  hasSearched = false,
+  loading = false,
+}) => {
   if (!hasSearched) return null;
 
-  if (!movies.length && !hasSearched) {
+  if (!loading && movies.length === 0) {
     return <NoResults>No results found. Try a different search term.</NoResults>;
   }
 
