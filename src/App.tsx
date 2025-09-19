@@ -36,7 +36,6 @@ const Shell = styled.div`
 const HeaderPanels = styled.div`
   position: sticky;
   top: 0;
-  z-index: 10;
   background: var(--background);
   padding-bottom: 8px;
 `;
