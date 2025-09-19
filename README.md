@@ -53,23 +53,23 @@ Live demo: [https://yourappdomain.com](https://yourappdomain.com)
 
 ## Usage
 
-i. Type a movie name in the search bar and hit Enter
+1. Type a movie name in the search bar and hit Enter
 
-ii. Click a movie to see full details
+2. Click a movie to see full details
 
-iii. Toggle between light and dark themes using the switch
+3. Toggle between light and dark themes using the switch
 
 ## Technologies
 
-i. React & TypeScript
+1. React & TypeScript
 
-ii. Styled-components
+2. Styled-components
 
-iii. Axios for API requests
+3. Axios for API requests
 
-iv. OMDb API
+4. OMDb API
 
-v. Jest & React Testing Library for unit tests
+5. Jest & React Testing Library for unit tests
 
 ## Testing
 
