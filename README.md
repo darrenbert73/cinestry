@@ -30,7 +30,11 @@ Cinestry is a React-based web app that allows users to search for movies, view d
 
 Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
----
+## Screenshots
+
+### Home Page
+
+![Cinestry Home](images/cinestry-screenshot.png)
 
 ## Installation
 
@@ -44,7 +48,9 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
    npm install
    ```
 3. Create a .env file in the root with your OMDb API key:
+   ```bash
    REACT_APP_OMDB_KEY=your_api_key_here
+   ```
 4. Start the development server:
    ```bash
    npm start
