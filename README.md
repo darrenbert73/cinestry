@@ -29,7 +29,7 @@ A React-based Movie Explorer that lets you search for movies, view detailed info
 
 ## Demo
 
-Live demo: [https://yourappdomain.com](https://yourappdomain.com)
+Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
 ---
 
