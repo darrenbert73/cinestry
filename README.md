@@ -113,7 +113,7 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
       - Cached results are returned instantly.
 
-      - Data remains “fresh” for a configurable staleTime (5 mins for movies, 10 mins for details).
+      - Data remains “fresh” for a configurable staleTime (10 minutes configured).
 
       - Once stale, React Query automatically refetches in the background to keep data up to date.
 
