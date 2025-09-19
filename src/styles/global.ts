@@ -24,6 +24,7 @@ export const GlobalStyles = createGlobalStyle`
     --accent2: #FACC15; 
     --focus: #FACC15;
   }
+    
 
   * { box-sizing: border-box; }
   html, body, #root { height: 100%; }

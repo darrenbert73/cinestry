@@ -41,7 +41,7 @@ const Header = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 14px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 0.5px solid color-mix(in srgb, var(--text) 20%, transparent);
 `;
 
 const Title = styled.h2`
@@ -62,6 +62,7 @@ const Close = styled.button`
     width: 20px;
     height: 20px;
     fill: var(--text);
+    color: var(--text);
   }
 `;
 
