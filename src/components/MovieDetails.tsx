@@ -3,6 +3,7 @@ import { Star } from 'lucide-react';
 import styled from 'styled-components';
 import { MovieDetails as MovieDetailsType } from '../types/movie';
 import { LoadingSpinner } from './Spinner';
+import { ReactComponent as CloseIcon } from '../assets/svg/close-icon.svg';
 
 const Backdrop = styled.div`
   position: fixed;
@@ -51,9 +52,17 @@ const Title = styled.h2`
 const Close = styled.button`
   background: transparent;
   border: none;
-  color: var(--text);
   cursor: pointer;
-  font-size: 18px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--text);
+  }
 `;
 
 const Content = styled.div`
@@ -133,7 +142,7 @@ export const MovieDetails: React.FC<Props> = ({ details, onClose, loading = fals
                 {details.Title} ({details.Year})
               </Title>
               <Close aria-label="Close" onClick={onClose}>
-                ×
+                <CloseIcon />
               </Close>
             </Header>
             <Content>
