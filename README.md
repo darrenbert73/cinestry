@@ -12,8 +12,7 @@ Cinestry is a React-based web app that allows users to search for movies, view d
 - [Usage](#usage)
 - [Technologies](#technologies)
 - [Testing](#testing)
-- [Design Notes](#designnotes)
-- [License](#license)
+- [Design Notes](#design)
 
 ---
 
@@ -82,26 +81,26 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
    npm test
    ```
 
-## Design Notes
+## Design
 
 1.  Architecture:
-    i. React functional components with hooks for state management.
+    - React functional components with hooks for state management.
 
-    ii. Context API for theme management and persisting state in Local storage.
+    - Context API for theme management and persisting state in Local storage.
 
-    iii. Styled-components for modular and theme-aware styling.
+    - Styled-components for modular and theme-aware styling.
 
-    iv. Axios for API requests.
+    - Axios for API requests.
 
-    v. Jest – for running unit tests and mocking modules.
+    - Jest for running unit tests and mocking modules.
 
-    vi. Responsive layouts using media queries
+    - Responsive layouts using media queries
 
-    vii. Caching Strategy:
-    - LocalStorage-backed cache:
-      - movieCache stores search results.
+    - Caching Strategy:
+      - LocalStorage-backed cache:
+        - movieCache stores search results.
 
-      - detailsCache stores detailed movie data.
+        - detailsCache stores detailed movie data.
 
     - Map structure: Fast lookups using JavaScript Map.
 
