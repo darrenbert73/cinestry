@@ -30,7 +30,7 @@ const Card = styled.article`
 const Poster = styled.img`
   width: 100%;
   height: 340px;
-  object-fit: cover;
+  object-fit: fill;
   background: var(--card);
 
   @media (max-width: 768px) {

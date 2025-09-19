@@ -61,7 +61,7 @@ const Brand = styled.div`
 
   @media (max-width: 480px) {
     gap: 2px;
-    flex-direction: column; /* stack logo above title on small phones */
+    flex-direction: column;
     align-items: center;
   }
 `;
@@ -102,18 +102,18 @@ const Title = styled.h1`
 `;
 
 const SearchHeader = styled.h2`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   text-align: center;
   margin-bottom: 16px;
   color: var(--text);
 
   @media (max-width: 768px) {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   @media (max-width: 480px) {
-    font-size: 18px;
+    font-size: 14px;
   }
 `;
 

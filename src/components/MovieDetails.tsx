@@ -23,16 +23,15 @@ const Panel = styled.div`
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
   @media (max-width: 768px) {
-    width: 95vw;
-    max-height: 95vh;
-    border-radius: 8px;
+    width: 90vw;
+    max-height: 85vh;
+    border-radius: 10px;
   }
 
   @media (max-width: 480px) {
-    width: 100vw;
-    height: 100vh;
-    border-radius: 0;
-    max-height: 100vh;
+    width: 95vw;
+    max-height: 80vh;
+    border-radius: 8px;
   }
 `;
 
