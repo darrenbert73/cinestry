@@ -33,7 +33,7 @@ const Shell = styled.div`
 const TopBar = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 7px;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
