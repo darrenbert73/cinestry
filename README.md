@@ -102,18 +102,19 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
         - detailsCache stores detailed movie data.
 
+        - Workflow:
+          - Check the cache before making an API call.
+
+          - If cached, return data immediately.
+
+          - If not, fetch from OMDb, store in cache, and persist to localStorage.
+
     - Map structure: Fast lookups using JavaScript Map.
 
     - Persistence: Updates to the cache are saved to localStorage to survive reloads.
 
-    - Workflow:
-      - Check the cache before making an API call.
-
-      - If cached, return data immediately.
-
-      - If not, fetch from OMDb, store in cache, and persist to localStorage.
-
 2.  Limitations:
     - Cache can grow indefinitely, no TTL (time-to-live) strategy, and data may become stale until the user manually refreshes.
-    - API key quota limits, occasional inconsistent data ("N/A" values), and lack of advanced filtering.
+    - API key quota limits (1000/day), occasional inconsistent data ("N/A" values), and lack of advanced filtering.
     - No lazy loading for images (posters), no pagination/infinite scroll for large result sets.
+    - No Pagination: The API’s search results only return up to 10 results per page. You’d need to handle page=2, page=3… manually.
