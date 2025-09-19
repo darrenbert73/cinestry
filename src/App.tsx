@@ -106,7 +106,7 @@ function App() {
       <Shell>
         {header}
         <SearchBar onSearch={performSearch} />
-        {loading && <LoadingSpinner />}
+        {loading && <LoadingSpinner message="Searching for movies..." />}
         {error && <div role="alert">{error}</div>}
         <MovieList
           movies={results}

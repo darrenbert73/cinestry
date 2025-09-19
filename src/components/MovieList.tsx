@@ -35,6 +35,7 @@ export const MovieList: React.FC<Props> = ({
   if (!loading && movies.length === 0) {
     return <NoResults>No results found. Try a different search term.</NoResults>;
   }
+  if (loading) return null;
 
   return (
     <Grid aria-label="Search results">

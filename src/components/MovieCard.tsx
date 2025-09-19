@@ -40,7 +40,7 @@ const Info = styled.div`
 
 const Title = styled.h3`
   margin: 0 0 4px 0;
-  font-size: 12px;
+  font-size: 13px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -52,7 +52,7 @@ const Title = styled.h3`
 
 const Year = styled.div`
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
   margin-top: 4px;
 `;
 

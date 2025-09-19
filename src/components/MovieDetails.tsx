@@ -109,7 +109,7 @@ export const MovieDetails: React.FC<Props> = ({ details, onClose, loading = fals
     <Backdrop role="dialog" aria-modal="true" aria-labelledby="movie-title" onClick={onClose}>
       <Panel onClick={(e) => e.stopPropagation()}>
         {loading ? (
-          <LoadingSpinner size="small" />
+          <LoadingSpinner size="small" message="Loading movie details..." />
         ) : details ? (
           <>
             <Header>
@@ -123,12 +123,13 @@ export const MovieDetails: React.FC<Props> = ({ details, onClose, loading = fals
             <Content>
               <RatingsPanel>
                 <Meta>
-                  <MetaCard>{details.Rated}</MetaCard>
+                  <MetaCard>Rated: {details.Rated}</MetaCard>
                   <MetaCard>{details.Runtime}</MetaCard>
                   <MetaCard>{details.Genre}</MetaCard>
                 </Meta>
                 {details.imdbRating && details.imdbRating !== `'N/A'` && (
                   <ImdbRating>
+                    IMDB Rating:
                     <Star size={16} fill="gold" stroke="gold" />
                     {details.imdbRating}
                   </ImdbRating>
