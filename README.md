@@ -115,8 +115,6 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
       - Once stale, React Query automatically refetches in the background to keep data up to date.
 
-    - Persistence: Updates to the cache are saved to localStorage to survive reloads.
-
 2.  Limitations:
     - Cache can grow indefinitely, no TTL (time-to-live) strategy, and data may become stale until the user manually refreshes.
     - API key quota limits (1000/day), occasional inconsistent data ("N/A" values), and lack of advanced filtering.
