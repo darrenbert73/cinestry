@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Movie, MovieDetails } from '../types/movie';
+import { validateQuery } from '../helper/searchValidator';
 
 const API_KEY = process.env.REACT_APP_OMDB_KEY || '';
 const BASE_URL = 'https://www.omdbapi.com/';
@@ -20,7 +21,8 @@ const saveCache = () => {
  * @returns List of movies that match the string
  */
 export const searchMovies = async (query: string): Promise<Movie[]> => {
-  const cached = cache.get(query);
+  const safeQuery = validateQuery(query);
+  const cached = cache.get(safeQuery);
   if (cached) {
     return cached;
   }

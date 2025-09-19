@@ -96,6 +96,8 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
     - Responsive layouts using media queries
 
+    - Added a simple validation function for the search term.
+
     - Caching Strategy:
       - LocalStorage-backed cache:
         - movieCache stores search results.

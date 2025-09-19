@@ -128,8 +128,8 @@ const SearchHeader = styled.h2`
 `;
 
 const MovieGrid = styled.div`
-  flex: 1;
-  overflow-y: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
@@ -142,6 +142,14 @@ const MovieGrid = styled.div`
     gap: 8px;
   }
 `;
+
+const ErrorMessage = styled.div`
+  color: #e63946;
+  font-weight: 500;
+  text-align: center;
+  margin: 12px 0;
+`;
+
 function App() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<Movie[]>([]);
@@ -159,7 +167,8 @@ function App() {
       const list = await searchMovies(q);
       setResults(list);
     } catch (e) {
-      setError('Failed to fetch movies');
+      setError('Invalid search term');
+      setResults([]);
     } finally {
       setLoading(false);
     }
@@ -210,7 +219,7 @@ function App() {
         </HeaderPanels>
 
         {loading && <LoadingSpinner message="Searching for movies..." />}
-        {error && <div role="alert">{error}</div>}
+        {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
 
         <MovieGrid>
           <MovieList
@@ -218,6 +227,7 @@ function App() {
             onSelect={setSelectedId}
             hasSearched={query.length > 0}
             loading={loading}
+            error={error}
           />
         </MovieGrid>
       </Shell>

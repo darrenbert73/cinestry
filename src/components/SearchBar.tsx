@@ -34,6 +34,7 @@ const Input = styled.input`
   background: var(--card);
   color: var(--text);
   width: 100%;
+  font-size: 16px;
 
   &::placeholder {
     color: var(--muted);
@@ -45,7 +46,7 @@ const Input = styled.input`
 
   @media (max-width: 480px) {
     padding: 10px 12px 10px 36px;
-    font-size: 14px;
+    font-size: 16px;
   }
 `;
 

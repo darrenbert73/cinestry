@@ -27,6 +27,7 @@ interface Props {
   onSelect: (id: string) => void;
   hasSearched?: boolean;
   loading?: boolean;
+  error?: string | null;
 }
 
 export const MovieList: React.FC<Props> = ({
@@ -34,9 +35,12 @@ export const MovieList: React.FC<Props> = ({
   onSelect,
   hasSearched = false,
   loading = false,
+  error = null,
 }) => {
   if (!hasSearched) return null;
-
+  if (error) {
+    return null;
+  }
   if (!loading && movies.length === 0) {
     return <NoResults>No results found. Try a different search term.</NoResults>;
   }
