@@ -92,7 +92,7 @@ function App() {
       <TopBar>
         <Brand>
           <Logo aria-hidden />
-          <Title>Movie Explorer</Title>
+          <Title>Cinestry - Movie Explorer</Title>
         </Brand>
         <ThemeToggle />
       </TopBar>
