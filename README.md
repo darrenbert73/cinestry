@@ -77,6 +77,8 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
 5. Jest & React Testing Library for unit tests
 
+6. Tanstack React Query
+
 ## Testing
 
 1. Unit test suites have been created for two components under a seperate folder
