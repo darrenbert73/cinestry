@@ -27,7 +27,7 @@ export const useMovies = (query: string) =>
     queryKey: ['movies', query],
     queryFn: () => fetchMovies(query),
     enabled: !!query,
-    staleTime: 1000 * 60 * 5,
+    //staleTime: 1000 * 60 * 5,
   });
 
 export const useMovieDetails = (id: string | null) =>
@@ -35,5 +35,5 @@ export const useMovieDetails = (id: string | null) =>
     queryKey: ['movieDetails', id],
     queryFn: () => fetchMovieDetails(id!),
     enabled: !!id,
-    staleTime: 1000 * 60 * 10,
+    //staleTime: 1000 * 60 * 10,
   });
