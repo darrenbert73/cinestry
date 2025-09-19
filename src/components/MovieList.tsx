@@ -5,7 +5,7 @@ import { MovieCard } from './MovieCard';
 
 const Grid = styled.section`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   gap: 16px;
   padding: 8px 0;
 

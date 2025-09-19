@@ -84,13 +84,37 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
 ## Design Notes
 
-1. Architecture:
-   i. React functional components with hooks for state management.
+1.  Architecture:
+    i. React functional components with hooks for state management.
 
-   ii. Context API for theme management.
+    ii. Context API for theme management and persisting state in Local storage.
 
-   iii. Styled-components for modular and theme-aware styling.
+    iii. Styled-components for modular and theme-aware styling.
 
-   iv. Axios for API requests.
+    iv. Axios for API requests.
 
-   v. Jest – for running unit tests and mocking modules.
+    v. Jest – for running unit tests and mocking modules.
+
+    vi. Responsive layouts using media queries
+
+    vii. Caching Strategy:
+    - LocalStorage-backed cache:
+      - movieCache stores search results.
+
+      - detailsCache stores detailed movie data.
+
+    - Map structure: Fast lookups using JavaScript Map.
+
+    - Persistence: Updates to the cache are saved to localStorage to survive reloads.
+
+    - Workflow:
+      - Check the cache before making an API call.
+
+      - If cached, return data immediately.
+
+      - If not, fetch from OMDb, store in cache, and persist to localStorage.
+
+2.  Limitations:
+    - Cache can grow indefinitely, no TTL (time-to-live) strategy, and data may become stale until the user manually refreshes.
+    - API key quota limits, occasional inconsistent data ("N/A" values), and lack of advanced filtering.
+    - No lazy loading for images (posters), no pagination/infinite scroll for large result sets.
