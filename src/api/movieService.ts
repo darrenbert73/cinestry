@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Movie, MovieDetails } from '../types/movie';
 import { validateQuery } from '../helper/searchValidator';
@@ -5,56 +6,34 @@ import { validateQuery } from '../helper/searchValidator';
 const API_KEY = process.env.REACT_APP_OMDB_KEY || '';
 const BASE_URL = 'https://www.omdbapi.com/';
 
-const cache: Map<string, Movie[]> = new Map(JSON.parse(localStorage.getItem('movieCache') || '[]'));
-const detailsCache: Map<string, MovieDetails> = new Map(
-  JSON.parse(localStorage.getItem('detailsCache') || '[]'),
-);
-
-const saveCache = () => {
-  localStorage.setItem('movieCache', JSON.stringify(Array.from(cache.entries())));
-  localStorage.setItem('detailsCache', JSON.stringify(Array.from(detailsCache.entries())));
-};
-
-/**
- * This is a search function to get a list of movies from an external API and cache it
- * @param query string value
- * @returns List of movies that match the string
- */
-export const searchMovies = async (query: string): Promise<Movie[]> => {
+const fetchMovies = async (query: string): Promise<Movie[]> => {
   const safeQuery = validateQuery(query);
-  const cached = cache.get(safeQuery);
-  if (cached) {
-    return cached;
-  }
-
+  if (!safeQuery) return [];
   const { data } = await axios.get(BASE_URL, {
-    params: { s: query, apikey: API_KEY },
+    params: { s: safeQuery, apikey: API_KEY },
   });
-
-  const results: Movie[] = data.Search || [];
-  cache.set(query, results);
-  saveCache();
-  return results;
+  return data.Search || [];
 };
 
-/**
- * Gets the movie details by passing the movie id passed from the list
- * @param id id for the movie
- * @returns a json object of movie details
- */
-export const getMovieDetails = async (id: string): Promise<MovieDetails | null> => {
-  const cached = detailsCache.get(id);
-  if (cached) {
-    return cached;
-  }
-
+const fetchMovieDetails = async (id: string): Promise<MovieDetails> => {
   const { data } = await axios.get(BASE_URL, {
     params: { i: id, apikey: API_KEY, plot: 'full' },
   });
-
-  if (!data) return null;
-
-  detailsCache.set(id, data);
-  saveCache();
   return data;
 };
+
+export const useMovies = (query: string) =>
+  useQuery<Movie[]>({
+    queryKey: ['movies', query],
+    queryFn: () => fetchMovies(query),
+    enabled: !!query,
+    staleTime: 1000 * 60 * 5,
+  });
+
+export const useMovieDetails = (id: string | null) =>
+  useQuery<MovieDetails>({
+    queryKey: ['movieDetails', id],
+    queryFn: () => fetchMovieDetails(id!),
+    enabled: !!id,
+    staleTime: 1000 * 60 * 10,
+  });

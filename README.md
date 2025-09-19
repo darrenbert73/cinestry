@@ -22,7 +22,7 @@ Cinestry is a React-based web app that allows users to search for movies, view d
 - View detailed movie information including IMDb rating, genre, runtime, and plot
 - Light & dark theme toggle
 - Responsive design
-- Caching for faster subsequent searches
+- Caching for faster subsequent searches using React Query. (useQuery and local storage)
 
 ---
 
@@ -104,20 +104,16 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 
     - Added a simple validation function for the search term.
 
-    - Caching Strategy:
-      - LocalStorage-backed cache:
-        - movieCache stores search results.
+    - Caching Strategy - React Query (Primary Cache):
+      - Uses useQuery hooks (useMovies, useMovieDetails) to fetch and cache OMDb API results.
 
-        - detailsCache stores detailed movie data.
+      - Each query has a unique cache key (['movies', query], ['movieDetails', id]).
 
-        - Workflow:
-          - Check the cache before making an API call.
+      - Cached results are returned instantly.
 
-          - If cached, return data immediately.
+      - Data remains “fresh” for a configurable staleTime (5 mins for movies, 10 mins for details).
 
-          - If not, fetch from OMDb, store in cache, and persist to localStorage.
-
-    - Map structure: Fast lookups using JavaScript Map.
+      - Once stale, React Query automatically refetches in the background to keep data up to date.
 
     - Persistence: Updates to the cache are saved to localStorage to survive reloads.
 

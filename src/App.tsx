@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { ThemeProvider } from './context/ThemeContext';
 import { GlobalStyles } from './styles/global';
@@ -7,8 +7,7 @@ import { MovieList } from './components/MovieList';
 import { MovieDetails } from './components/MovieDetails';
 import { ThemeToggle } from './components/ThemeToggle';
 import { LoadingSpinner } from './components/Spinner';
-import { searchMovies, getMovieDetails } from './api/movieService';
-import { Movie, MovieDetails as MovieDetailsType } from './types/movie';
+import { useMovies, useMovieDetails } from './api/movieService';
 import { ReactComponent as MovieIcon } from './assets/svg/movie-icon.svg';
 
 const Shell = styled.div`
@@ -16,7 +15,6 @@ const Shell = styled.div`
   width: 100%;
   height: 100vh;
   margin: 0 auto;
-  // padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -104,7 +102,6 @@ const Title = styled.h1`
 
   @media (max-width: 768px) {
     font-size: 18px;
-    // text-align: center;
   }
 
   @media (max-width: 480px) {
@@ -135,6 +132,7 @@ const MovieGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
   padding: 16px;
+
   @media (max-width: 768px) {
     gap: 12px;
   }
@@ -153,46 +151,11 @@ const ErrorMessage = styled.div`
 
 function App() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<Movie[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [details, setDetails] = useState<MovieDetailsType | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [detailsLoading, setDetailsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const performSearch = useCallback(async (q: string) => {
-    setQuery(q);
-    setLoading(true);
-    setError(null);
-    try {
-      const list = await searchMovies(q);
-      setResults(list);
-    } catch (e) {
-      setError('Invalid search term');
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const { data: results = [], isLoading: loading, error } = useMovies(query);
 
-  useEffect(() => {
-    if (!selectedId) {
-      setDetails(null);
-      setDetailsLoading(false);
-      return;
-    }
-    setDetailsLoading(true);
-    let cancelled = false;
-    getMovieDetails(selectedId).then((d) => {
-      if (!cancelled) {
-        setDetails(d);
-        setDetailsLoading(false);
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [selectedId]);
+  const { data: details, isLoading: detailsLoading } = useMovieDetails(selectedId);
 
   const onCloseDetails = useCallback(() => setSelectedId(null), []);
 
@@ -216,11 +179,11 @@ function App() {
         <HeaderPanels>
           {header}
           <SearchHeader>Let’s Find a Movie for You</SearchHeader>
-          <SearchBar onSearch={performSearch} />
+          <SearchBar onSearch={setQuery} />
         </HeaderPanels>
 
         {loading && <LoadingSpinner message="Searching for movies..." />}
-        {error && <ErrorMessage role="alert">{error}</ErrorMessage>}
+        {error && <ErrorMessage role="alert">Invalid search term</ErrorMessage>}
 
         <MovieGrid>
           <MovieList
@@ -228,11 +191,12 @@ function App() {
             onSelect={setSelectedId}
             hasSearched={query.length > 0}
             loading={loading}
-            error={error}
+            error={error ? 'Invalid search term' : null}
           />
         </MovieGrid>
       </Shell>
-      <MovieDetails details={details} onClose={onCloseDetails} loading={detailsLoading} />
+
+      <MovieDetails details={details ?? null} onClose={onCloseDetails} loading={detailsLoading} />
     </ThemeProvider>
   );
 }
