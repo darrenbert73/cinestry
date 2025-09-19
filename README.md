@@ -74,8 +74,8 @@ Live demo: [https://cinestry.vercel.app/](https://cinestry.vercel.app/)
 ## Testing
 
 1. Unit test suites have been created for two components under a seperate folder
-   i. Search Bar component
-   ii. Movie details overlay component.
+   - Search Bar component
+   - Movie details overlay component.
 2. Run tests with:
    ```bash
    npm test
