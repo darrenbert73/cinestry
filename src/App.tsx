@@ -16,7 +16,7 @@ const Shell = styled.div`
   width: 100%;
   height: 100vh;
   margin: 0 auto;
-  padding: 16px;
+  // padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -47,6 +47,8 @@ const TopBar = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  border-bottom: 0.5px solid color-mix(in srgb, var(--text) 20%, transparent);
+  padding: 16px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -132,7 +134,7 @@ const MovieGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
-
+  padding: 16px;
   @media (max-width: 768px) {
     gap: 12px;
   }
